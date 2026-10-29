@@ -1,0 +1,180 @@
+/* Podstawowe ustawienia strony */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f1fa;
+    color: #29243a;
+}
+
+/* Nagłówek strony */
+header {
+    background-color: #514078;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin: 0 0 15px;
+    font-size: 36px;
+}
+
+header p {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Główna zawartość */
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    color: #514078;
+    margin-top: 0;
+}
+
+/* Miejsce na filmy pobrane z API */
+#lista-filmow {
+    margin-top: 25px;
+    padding: 25px;
+    background-color: #f4f1fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Stopka */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+/* Dostosowanie do mniejszych ekranów */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    main {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    section {
+        padding: 20px;
+    }
+}
+/* Formularz wyboru filmów */
+.formularz-filmow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.formularz-filmow label {
+    font-weight: bold;
+    color: #514078;
+}
+
+/* Lista wyboru filtra */
+#filtr-filmow {
+    padding: 12px;
+    border: 1px solid #b8a9d6;
+    border-radius: 8px;
+    background-color: white;
+    color: #29243a;
+    font-size: 15px;
+}
+
+/* Przycisk pobierania filmów */
+#wczytaj-filmy {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #514078;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#wczytaj-filmy:hover {
+    background-color: #75609f;
+}
+
+#wczytaj-filmy:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Komunikaty o ładowaniu i błędach */
+#komunikat {
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+#komunikat:empty {
+    display: none;
+}
+
+/* Dostosowanie formularza do telefonów */
+@media (max-width: 600px) {
+    .formularz-filmow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #filtr-filmow,
+    #wczytaj-filmy {
+        width: 100%;
+    }
+}
+
+/* Układ listy filmów pobranych z API */
+#lista-filmow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+/* Wygląd pojedynczej karty filmu */
+.karta-filmu {
+    background-color: #f7f4ff;
+    border: 1px solid #ddd3f2;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 8px rgba(50, 30, 80, 0.08);
+}
+
+/* Tytuł filmu */
+.karta-filmu h3 {
+    color: #514078;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Informacje o filmie */
+.karta-filmu p {
+    margin: 8px 0;
+    line-height: 1.5;

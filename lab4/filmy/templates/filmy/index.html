@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog filmów</title>
+    <link rel="stylesheet" href="{% static 'filmy/style.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>🎬 Katalog filmów</h1>
+        <p>Moja kolekcja ulubionych filmów.</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Lista filmów</h2>
+            <p>Odkrywaj filmy z różnych gatunków i sprawdzaj, które zostały już obejrzane.</p>
+
+            <!-- Wybór filmów do wyświetlenia -->
+            <div class="formularz-filmow">
+                <label for="filtr-filmow">Pokaż filmy:</label>
+
+                <select id="filtr-filmow">
+                    <option value="wszystkie">Wszystkie filmy</option>
+                    <option value="obejrzane">Obejrzane</option>
+                    <option value="nieobejrzane">Nieobejrzane</option>
+                </select>
+
+                <button id="wczytaj-filmy" type="button">
+                    Wczytaj filmy
+                </button>
+            </div>
+
+            <!-- Komunikaty o ładowaniu i błędach -->
+            <p id="komunikat" role="status" aria-live="polite"></p>
+
+            <!-- Miejsce na filmy pobrane z API -->
+            <div id="lista-filmow">
+                <p>Kliknij przycisk „Wczytaj filmy”, aby zobaczyć katalog.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Projekt Django – Laboratorium 4</p>
+    </footer>
+
+    <!-- Skrypt pobierający filmy z API Django -->
+    <script src="{% static 'filmy/script.js' %}"></script>
+
+</body>
+</html>
