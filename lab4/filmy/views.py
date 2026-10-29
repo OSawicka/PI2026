@@ -3,39 +3,34 @@ from django.http import JsonResponse
 from .models import Film
 
 
-# Wyświetlanie strony głównej katalogu filmów
+# Wyświetlanie strony głównej
 def strona_glowna(request):
     return render(request, 'filmy/index.html')
 
 
-# API zwracające filmy w formacie JSON
-def api_filmy(request):
-
-    # Pobranie wszystkich filmów z bazy danych
-    filmy = Film.objects.all().order_by('id')
+# API zwracające listę filmów w formacie JSON
+def lista_filmow(request):
+    filmy = Film.objects.all()
 
     # Odczytanie parametru filtrowania z adresu URL
     obejrzany = request.GET.get('obejrzany')
 
-    # Filtrowanie filmów za pomocą Django ORM
-    if obejrzany == 'true':
-        filmy = filmy.filter(obejrzany=True)
+    if obejrzany is not None:
+        if obejrzany.lower() == 'true':
+            filmy = filmy.filter(obejrzany=True)
+        elif obejrzany.lower() == 'false':
+            filmy = filmy.filter(obejrzany=False)
 
-    elif obejrzany == 'false':
-        filmy = filmy.filter(obejrzany=False)
+    # Przygotowanie danych filmów
+    dane = list(filmy.values(
+        'id',
+        'tytul',
+        'rezyser',
+        'gatunek',
+        'rok_produkcji',
+        'opis',
+        'obejrzany'
+    ))
 
-    # Przygotowanie danych do odpowiedzi JSON
-    dane = []
-
-    for film in filmy:
-        dane.append({
-            'id': film.id,
-            'tytul': film.tytul,
-            'rezyser': film.rezyser,
-            'gatunek': film.gatunek,
-            'rok_produkcji': film.rok_produkcji,
-            'opis': film.opis,
-            'obejrzany': film.obejrzany,
-        })
-
+    # Zwrócenie danych w formacie oczekiwanym przez JavaScript
     return JsonResponse({'items': dane})

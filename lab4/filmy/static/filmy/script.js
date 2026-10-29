@@ -63,12 +63,15 @@ async function wczytajFilmy() {
             const rok = document.createElement("p");
             rok.textContent = "Rok produkcji: " + film.rok_produkcji;
 
+            const opis = document.createElement("p");
+            opis.textContent = "Opis: " + (film.opis || "Brak opisu");
+
             const status = document.createElement("p");
             status.textContent = film.obejrzany
                 ? "Status: Obejrzany"
                 : "Status: Nieobejrzany";
 
-            karta.append(tytul, rezyser, gatunek, rok, status);
+            karta.append(tytul, rezyser, gatunek, rok, opis, status);
             listaFilmow.appendChild(karta);
         });
 
