@@ -6,4 +6,4 @@ db.sqlite3
 /static/
 /lab4/staticfiles/
 .env
-*.swp
+/lab3/staticfiles/
